@@ -1421,6 +1421,7 @@ dependencies = [
  "rome_diagnostics",
  "rome_js_factory",
  "rome_js_parser",
+ "rome_js_semantic",
  "rome_js_syntax",
  "rome_rowan",
  "tests_macros",

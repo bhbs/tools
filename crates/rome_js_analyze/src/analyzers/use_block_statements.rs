@@ -71,7 +71,7 @@ impl Rule for UseBlockStatements {
     type Signals = Option<Self::State>;
 
     fn run(ctx: &RuleContext<Self>) -> Option<Self::State> {
-        let Ast(node) = ctx.query();
+        let node = ctx.query();
         match node {
             JsAnyStatement::JsIfStatement(stmt) => {
                 let JsIfStatementFields {
@@ -127,7 +127,7 @@ impl Rule for UseBlockStatements {
     }
 
     fn diagnostic(ctx: &RuleContext<Self>, _: &Self::State) -> Option<RuleDiagnostic> {
-        let Ast(node) = ctx.query();
+        let node = ctx.query();
         Some(RuleDiagnostic::warning(
             node.range(),
             markup! {
@@ -140,7 +140,7 @@ impl Rule for UseBlockStatements {
         ctx: &RuleContext<Self>,
         nodes_need_to_replaced: &Self::State,
     ) -> Option<JsRuleAction> {
-        let Ast(node) = ctx.query();
+        let node = ctx.query();
         let root = ctx.root();
         let root = match nodes_need_to_replaced {
             UseBlockStatementsOperationType::Wrap(stmt) => root.replace_node(
